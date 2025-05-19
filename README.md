@@ -31,7 +31,7 @@
 ### 1. Клонирование репозитория
 
 ```bash
-git clone https://github.com/your-username/dds-tracker.git
+git clone https://github.com/vladikhub/DDS.git
 cd dds
 ```
 ### 2. Создание виртуального окружения
@@ -61,6 +61,4 @@ python manage.py createsuperuser
 ```bash
 python manage.py runserver
 ```
-
-## 
 
