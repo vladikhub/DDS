@@ -7,7 +7,7 @@
 
 ```bash
 git clone https://github.com/your-username/dds-tracker.git
-cd dds-tracker
+cd dds
 ```
 ### 2. Создание виртуального окружения
 
