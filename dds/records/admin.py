@@ -1,6 +1,7 @@
 from django.contrib import admin
 from rangefilter.filters import DateRangeFilter
 
+from records.forms import RecordForm
 from records.models import Status, Type, Category, Subcategory, Records
 
 
@@ -28,13 +29,10 @@ class SubcategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Records)
 class RecordsAdmin(admin.ModelAdmin):
+    form = RecordForm
     list_display = ( 'date', 'status',
                     'type', 'category', 'subcategory',
                     'amount', 'comment')
 
     list_filter = ('status', 'type', 'category', 'subcategory', ('date', DateRangeFilter))
     ordering = ('-date',)
-
-    class Media:
-
-        js = ('admin.js',)

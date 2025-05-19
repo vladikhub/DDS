@@ -35,6 +35,5 @@ urlpatterns = [
     path('api/v1/records/', ReadCreateRecordsAPIView.as_view()),
     path('api/v1/records/<int:pk>/', RetrieveDetailRecordAPIView.as_view(), name='records-detail'),
     path('api/v1/', include(router.urls)),
-    path('admin-api/categories/', CategoryViewSet.as_view({'get': 'for_admin'})),
-    path('admin-api/subcategories/', SubcategoryViewSet.as_view({'get': 'for_admin'})),
+
 ]

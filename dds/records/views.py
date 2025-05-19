@@ -188,44 +188,16 @@ class CategoryViewSet(viewsets.ModelViewSet):
     """
         ViewSet для модели Category (операции CRUD)
 
-        Дополнительный экшн:
-            for_admin() - ручка для админ-понели,
-            получение категории по типу операции
     """
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
-    @action(detail=False, url_path='for-admin')
-    def for_admin(self, request):
-        """
-
-        Получает категории по типу операции
-        """
-        type_id = request.GET.get('type_id')
-        categories = self.queryset.filter(type_id=type_id)
-        serializer = self.get_serializer(categories, many=True)
-        return Response(serializer.data)
 
 
 class SubcategoryViewSet(viewsets.ModelViewSet):
     """
         ViewSet для модели Subcategory (операции CRUD)
 
-        Дополнительный экшн:
-            for_admin() - ручка для админ-понели,
-            получение подкатегории по категории операции
     """
     queryset = Subcategory.objects.all()
     serializer_class = SubcategorySerializer
-
-    @action(detail=False, url_path='for-admin')
-    def for_admin(self, request):
-        """
-
-        Получает подкатегории по категории
-        """
-        category_id = request.GET.get('category_id')
-        subcategories = self.queryset.filter(category_id=category_id)
-        serializer = self.get_serializer(subcategories, many=True)
-        return Response(serializer.data)
-
