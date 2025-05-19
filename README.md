@@ -24,10 +24,15 @@ pip install -r requirements.txt
 
 ### 4. Применение миграций
 ```bash
+python manage.py makemigrations
 python manage.py migrate
 ```
 
 ### 5. Для допуска к Админ-панели сайта
 ```bash
 python manage.py createsuperuser
+```
+### 6. Для запуска сервера
+```bash
+python manage.py runserver
 ```
