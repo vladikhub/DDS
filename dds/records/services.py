@@ -4,6 +4,24 @@ from records.models import Records
 from records.selectors import get_status, get_type, get_subcategory, get_category
 
 def create_record(data: dict):
+    """
+    Создает новую запись операции с валидацией зависимостей сущностей
+
+    При несовпадении зависимостей выкидывает ошибку ValidationError
+
+    Принимает:
+        data: dict - словарь validated_data из сериализатора.
+        В себе должен хранить:
+            - status (str): Название статуса
+            - type (str): Название типа операции
+            - category (str): Название категории
+            - subcategory (str): Название подкатегории
+            - amount (int): Сумма операции
+            - comment (str, optional): Комментарий к операции
+
+    Возвращает:
+        Records - созданный объект
+    """
     status = get_status(data.get("status"))
     type = get_type(data.get("type"))
     category = get_category(data.get("category"))
@@ -26,6 +44,25 @@ def create_record(data: dict):
     )
 
 def update_record(instance: Records, data: dict):
+    """
+    Обновляет существующую запись операции с валидацией зависимостей сущностей
+
+    При несовпадении зависимостей выкидывает ошибку ValidationError
+
+    Принимает:
+        instance (Records): Объект записи, который нужно обновить
+        data: dict - словарь validated_data из сериализатора.
+        В себе должен хранить:
+            - status (str): Название статуса
+            - type (str): Название типа операции
+            - category (str): Название категории
+            - subcategory (str): Название подкатегории
+            - amount (int): Сумма операции
+            - comment (str, optional): Комментарий к операции
+
+    Возвращает:
+        Records - созданный объект
+    """
     status = get_status(data.get("status", instance.status))
     type = get_type(data.get("type", instance.type))
     category = get_category(data.get("category", instance.category))
@@ -47,5 +84,13 @@ def update_record(instance: Records, data: dict):
     return instance
 
 def delete_record(instance: Records):
+    """
+    Удаляет существующую запись операции
+
+    Принимает:
+        instance (Records): Объект записи, который нужно обновить
+    Возвращает:
+        dict
+    """
     instance.delete()
     return {"status": "OK"}

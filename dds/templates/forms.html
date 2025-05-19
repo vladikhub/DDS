@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Форма записи</title>
+  <link rel="stylesheet" href="{% static 'css/forms.css' %}">
+</head>
+<body>
+  <h1 id="formTitle">Создание записи</h1>
+
+  <form id="recordForm">
+    <label>Дата:
+      <input type="date" name="date" required>
+    </label>
+
+    <label>Статус:
+      <select name="status" required></select>
+    </label>
+
+    <label>Тип:
+      <select name="type" required></select>
+    </label>
+
+    <label>Категория:
+      <select name="category" required></select>
+    </label>
+
+    <label>Подкатегория:
+      <select name="subcategory" required></select>
+    </label>
+
+    <label>Сумма:
+      <input type="number" name="amount" required>
+    </label>
+
+    <label>Комментарий:
+      <textarea name="comment" rows="3"></textarea>
+    </label>
+
+    <button type="submit">Сохранить</button>
+    <button type="button" onclick="window.location.href='index.html'">Назад</button>
+  </form>
+
+</body>
+</html>

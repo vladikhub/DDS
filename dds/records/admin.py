@@ -28,8 +28,13 @@ class SubcategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Records)
 class RecordsAdmin(admin.ModelAdmin):
-    list_display = ('id', 'date', 'status',
+    list_display = ( 'date', 'status',
                     'type', 'category', 'subcategory',
                     'amount', 'comment')
 
     list_filter = ('status', 'type', 'category', 'subcategory', ('date', DateRangeFilter))
+    ordering = ('-date',)
+
+    class Media:
+
+        js = ('admin.js',)

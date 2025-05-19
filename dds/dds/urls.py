@@ -16,6 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic import TemplateView
 from rest_framework import routers
 
 from records.views import (ReadCreateRecordsAPIView,
@@ -32,6 +33,8 @@ router.register("subcategory", SubcategoryViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/records/', ReadCreateRecordsAPIView.as_view()),
-    path('api/v1/records/<int:pk>/', RetrieveDetailRecordAPIView.as_view()),
+    path('api/v1/records/<int:pk>/', RetrieveDetailRecordAPIView.as_view(), name='records-detail'),
     path('api/v1/', include(router.urls)),
+    path('admin-api/categories/', CategoryViewSet.as_view({'get': 'for_admin'})),
+    path('admin-api/subcategories/', SubcategoryViewSet.as_view({'get': 'for_admin'})),
 ]
